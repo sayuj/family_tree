@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FamilyTree</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="nav">
+    <%= link_to 'Members', members_path %>
+    <%= link_to 'Tree', tree_members_path %>
+</div>
+<%= yield %>
+
+</body>
+</html>

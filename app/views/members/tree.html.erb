@@ -1,0 +1,10 @@
+<h1>Family Tree (<%= @parent.try(:name) %>)</h1>
+<% if @parent %>
+<%= link_to 'Back', tree_members_path(parent: @parent.parent_id) %>
+<% end %>
+
+<ul>
+<% @branches.each do |member| %>
+  <li><%= member.name %> <-> <%= member.spouses.map(&:name).join(',') %> <%= link_to 'Next', tree_members_path(parent: member.id) %> </li>
+<% end %>
+</ul>

@@ -1,0 +1,62 @@
+<%= form_for(@member) do |f| %>
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <div class="form-member">
+      <%= f.label :name %>
+      <div class="col-sm-9 mt5">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="form-member">
+      <%= f.label :sex %>
+      <div class="col-sm-9 mt5">
+        <%= radio_button('member', 'sex', 'M') %> M
+        <%= radio_button('member', 'sex', 'F') %> F
+      </div>
+    </div>
+
+    <div class="form-member">
+      <%= f.label :address %>
+      <div class="col-sm-9 mt5">
+        <%= f.text_area :address %>
+      </div>
+    </div>
+
+    <div class="form-member">
+      <%= f.label :father, class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9 mt5">
+        <%= f.select :father_id, [['Select', '']] + Member.pluck(:name, :id),{}, {:multiple => false, class: 'selectpicker show-tick form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-member">
+      <%= f.label :mother, class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9 mt5">
+        <%= f.select :mother_id, [['Select', '']] + Member.pluck(:name, :id),{}, {:multiple => false, class: 'selectpicker show-tick form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-member">
+      <%= f.label :current_spouse, class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9 mt5">
+        <%= f.select :current_spouse_id, [['Select', '']] + Member.pluck(:name, :id),{}, {:multiple => false, class: 'selectpicker show-tick form-control'} %>
+      </div>
+    </div>
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
